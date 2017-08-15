@@ -12,7 +12,7 @@ module.exports = function (app) {
                 lista: result
             });
         });
-        connection.end();
+
 
     });
 }

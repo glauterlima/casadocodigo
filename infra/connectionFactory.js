@@ -1,12 +1,13 @@
 var mysql = require('mysql');
 
-function createConnection() {
-    return mysql.createConnection({
+function createPool() {
+    const pool = mysql.createPool({
         host: 'localhost',
         user : 'root',
         password : '',
         database: 'casadocodigo'
     });
+    return pool;
 };
 
-module.exports = createConnection;
+module.exports = createPool;
