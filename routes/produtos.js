@@ -1,19 +1,18 @@
+var connectionFactory = require('../infra/connectionFactory');
+
 module.exports = function (app) {
-    app.get('/produtos', (req, res) => {
-        //res.render('produtos/lista');
-        var mysql = require('mysql');
-        
-        var connection = mysql.createConnection({
-            host : 'localhost',
-            user: 'root',
-            password : '',
-            database : 'casadocodigo'
-        });
-        
-        connection.query('select * from livros' , function(err, result, fields) {
-            res.render('produtos/lista', {lista:result});
+    app.get('/produtos', function (req, res) {
+
+
+        var connection = connectionFactory();
+
+
+        connection.query('SELECT * FROM livros', function (err, result, fields) {
+            res.render('produtos/lista', {
+                lista: result
+            });
         });
         connection.end();
 
-});
+    });
 }
