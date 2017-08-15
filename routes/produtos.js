@@ -1,18 +1,17 @@
-var connectionFactory = require('../infra/connectionFactory');
+const connectionFactory = require('../infra/connectionFactory');
+const ProdutoDao = require('../infra/ProdutoDao');
 
 module.exports = function (app) {
-    app.get('/produtos', function (req, res) {
+    app.get('/produtos', (req, res) => {
 
+        const connection = connectionFactory();
+        const produtoDao = new ProdutoDao(connection);
 
-        var connection = connectionFactory();
-
-
-        connection.query('SELECT * FROM livros', function (err, result, fields) {
+        produtoDao.lista((err, results) => {
             res.render('produtos/lista', {
-                lista: result
+                lista: results
             });
         });
-
 
     });
 }
