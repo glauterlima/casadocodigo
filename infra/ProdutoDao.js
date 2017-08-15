@@ -20,5 +20,6 @@ class ProdutoDao {
     }
 }
 
-
-module.exports = ProdutoDao;
+module.exports = function() {
+    return ProdutoDao;
+};

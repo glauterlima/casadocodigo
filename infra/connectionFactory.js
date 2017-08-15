@@ -1,13 +1,17 @@
 var mysql = require('mysql');
 
-function createPool() {
-    const pool = mysql.createPool({
-        host: 'localhost',
-        user : 'root',
-        password : '',
-        database: 'casadocodigo'
-    });
-    return pool;
+const pool = mysql.createPool({
+    host: 'localhost',
+    user : 'root',
+    password : '',
+    database: 'casadocodigo'
+});
+
+function createConnection(callback) {
+   
+    return pool.getConnection(callback);
 };
 
-module.exports = createPool;
+module.exports = function() {
+    return createConnection;
+}
