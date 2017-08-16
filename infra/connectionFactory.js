@@ -9,7 +9,7 @@ const pool = mysql.createPool({
 
 function createConnection(callback) {
    
-    return pool.getConnection(callback);
+    return pool;//.getConnection(callback);
 };
 
 module.exports = function() {

@@ -4,7 +4,7 @@
 module.exports = function (app) {
     app.get('/produtos', (req, res) => {
 
-        const connection = app.infra.connectionFactory((err, connection) => {
+        const connection = app.infra.connectionFactory();//(err, connection) => {
 
             const produtoDao = new app.infra.ProdutoDao(connection);
             produtoDao.lista((err, results, fields) => {
@@ -13,22 +13,24 @@ module.exports = function (app) {
                 });
             });
 
-            connection.release();
-        });
+            //connection.release();
+       // });
 
 
 
     });
-    
-    app.get('produtos/form', (req, res) => {
+
+    app.get('/produtos/form', (req, res) => {
         res.render('produtos/form');
     });
-    
+
     app.post('/produtos', (req, res) => {
+        var produto = req.body;
         const connection = app.infra.connectionFactory();
-        const ProdutoDao = new app.infra.ProdutoDao(connection);
+        const produtoDao = new app.infra.ProdutoDao(connection);
+
         produtoDao.salva(produto, (err, results) => {
-            res.render('produtos/salvo')
+            res.render('produtos/salvo');
         });
     });
 }

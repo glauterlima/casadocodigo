@@ -10,6 +10,7 @@ module.exports = function () {
     app.use(bodyParser.urlencoded());
     
     
+    
     load('routes').then('infra').into(app);
     return app;
 };
