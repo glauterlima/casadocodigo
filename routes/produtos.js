@@ -19,4 +19,16 @@ module.exports = function (app) {
 
 
     });
+    
+    app.get('produtos/form', (req, res) => {
+        res.render('produtos/form');
+    });
+    
+    app.post('/produtos', (req, res) => {
+        const connection = app.infra.connectionFactory();
+        const ProdutoDao = new app.infra.ProdutoDao(connection);
+        produtoDao.salva(produto, (err, results) => {
+            res.render('produtos/salvo')
+        });
+    });
 }
