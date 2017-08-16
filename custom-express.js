@@ -1,6 +1,7 @@
 const express = require('express');
 const load = require('express-load');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 
 
 module.exports = function () {
@@ -8,6 +9,8 @@ module.exports = function () {
     app.use(express.static('./public'));
     app.set('view engine', 'ejs');
     app.use(bodyParser.urlencoded());
+    app.use(bodyParser.json());
+    app.use(expressValidator());
     
     
     
