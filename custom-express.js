@@ -15,5 +15,17 @@ module.exports = function () {
     
     
     load('routes').then('infra').into(app);
+    
+    app.use(function (req,res,next) {
+        console.log('Recurso não encontrado: ' + req.originalUrl);
+        res.status(404).render("erros/404");
+    });
+    
+    app.use(function (error, req,res,next) {
+        console.error('Erro no midleware');
+        console.error(error);
+        res.status(500).render("erros/500");
+    });
+    
     return app;
 };
