@@ -241,6 +241,15 @@
         </div>
     </div>
 </footer>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    socket.on('novaPromocao', function (data) {
+        console.log('Nova promoção');
+        console.log(data);
+        alert('Nova promoção');
+    });
+</script>
 </body>
 </html>
 
